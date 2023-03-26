@@ -2,12 +2,11 @@
 <html>
 
 <head>
-    <link href="csscompta.css" rel="stylesheet" id="bootstrap-css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link href="csscompta.css?<?php echo time(); ?>" rel="stylesheet">
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap.min.css">
     <title> Page admin </title>
 </head>
@@ -195,9 +194,9 @@
 <section id="content">
 <div class="container autumn-text  ">
             <h1>Utilisateurs enregistré récemments</h1>
-        <table id="table1" class="autumn-text1 tableuser" style="width: 100%">
+        <table id="table1" class="autumn-text1" style="width: 100%">
             <thead>
-                <tr class="tableuser">
+                <tr>
                     <th scope="col">email</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
@@ -226,7 +225,13 @@
                                 <td>
                                     <form method="post" action="supprimer_utilisateur.php">
                                         <input type="hidden" name="email" value="<?=$row['email']?>">
-                                        <button type="submit">Supprimer</button>
+                                        <button type="submit border-none" class="glyphicon glyphicon-pencil"></button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post" action="supprimer_utilisateur.php">
+                                        <input type="hidden" name="email" value="<?=$row['email']?>">
+                                        <button type="submit border-none" class="glyphicon glyphicon-trash"></button>
                                     </form>
                                 </td>
                             </tr>
@@ -236,10 +241,16 @@
                     ?>
 
                     </section>
-            
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready( function () {

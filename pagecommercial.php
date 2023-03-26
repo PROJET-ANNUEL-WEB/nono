@@ -7,7 +7,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<title>Comptable</title>
+	<title>Commerciale</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -38,7 +38,7 @@ session_start();
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    Administrator
+                    Commerciale
                 </a>
             </div>
 
@@ -138,7 +138,7 @@ mysqli_close($conn);
 
     <label for="objet"> Objet <em>*</em></label>
     <input id="objet" type="objet" name="objet" placeholder="ex: Repas midi"><br>
-    <input type="" name="ID_utilisateur" value="<?php echo $ID_utilisateur ?>">
+    <input type="hidden" name="ID_utilisateur" value="<?php echo $ID_utilisateur ?>">
 
 
  
@@ -163,6 +163,7 @@ mysqli_close($conn);
         <div class="container autumn-text  ">
             <h1>FRAIS A TRAITER</h1>
         <table id="table1" class="autumn-text1" style="width: 100%">
+    
             <thead>
                 <tr>
                     <th scope="col">Créateur</th>
@@ -170,8 +171,8 @@ mysqli_close($conn);
                     <th scope="col">Prix</th>
                     <th scope="col">Date</th>
                     <th scope="col">Objet</th>
-                    <th scope="col">Valider</th>
-                    <th scope="col">Refuser</th>
+                    <th scope="col">Supprimer</th>
+                    <th scope="col">Modifier</th>
                 </tr>
             </thead>
             <tbody>
@@ -194,10 +195,18 @@ mysqli_close($conn);
                             <td><h5><?=$row['Montant']?></h5></td>
                             <td><h5><?=$row['Date_de_frais']?></h5></td>
                             <td><h5><?=$row['objet']?></h5></td>
-                            
-                            <!--Nous alons mettre l'id de chaque employé dans ce lien -->
-                           <td><a href="valide.php?id=<?=$row['ID_frais']?>"><img src="images/icons/valid.png" width=30px height=auto></a></td> 
-                            <td><a href="refus.php?id=<?=$row['ID_frais']?>"><img src="images/icons/trash.png" width=30px height=auto></a></td> 
+                            <td>
+                                    <form method="post" action="supprimer_frais.php">
+                                        <input type="hidden" name="IdEtat" value="<?=$row['IdEtat']?>">
+                                        <button type="submit" class="glyphicon glyphicon-trash"></button>
+                                    </form>
+                                </td> 
+                                <td>
+                                    <form method="post" action="modifier_frais.php">
+                                        <input type="hidden" name="Nom" value="<?=$row['Nom']?>">
+                                        <button type="submit" class="glyphicon glyphicon-pencil"></button>
+                                    </form>
+                                </td> 
                         </tr>
                         <?php
                     }
@@ -286,10 +295,7 @@ mysqli_close($conn);
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 
 
-  <script
-  src="https://code.jquery.com/jquery-3.6.3.min.js"
-  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
