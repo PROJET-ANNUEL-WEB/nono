@@ -61,7 +61,7 @@ elseif (isset($_GET['ID_Role'])) {
     exit();
 ?>
 
-    <form method="POST" action="modifier_utilisateur.php">
+    <form method="POST" action="modifier.php">
         <input type="hidden" name="ID_Role" value="<?= $ID_Role ?>">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
