@@ -199,7 +199,6 @@
             <thead>
                 <tr>
                     <th scope="col">email</th>
-                    <th scope="col" tyype="password">mot de passe</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
                     <th scope="col">Rôle</th>
@@ -212,7 +211,7 @@
 
                 $base = new PDO ('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
 
-                $donnees = $base->query("SELECT email , mot_de_passe , Nom, Prenom, ID_Role FROM utilisateur")->fetchAll();
+                $donnees = $base->query("SELECT email ,  Nom, Prenom, ID_Role FROM utilisateur")->fetchAll();
 
 
                 foreach ($donnees as $row) {
@@ -222,7 +221,6 @@
                         ?>
                         <tr>
                             <td><h5><?=$row['email'];?></h5></td>
-                            <td><h5><?=$row['mot_de_passe']?></h5></td>
                             <td><h5><?=$row['Nom']?></h5></td>
                             <td><h5><?=$row['Prenom']?></h5></td>
                             <td><h5><?=$row['ID_Role']?></h5></td>
