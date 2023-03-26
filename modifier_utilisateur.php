@@ -34,7 +34,7 @@ if (isset($_POST['email']) && isset($_POST['mot_de_passe']) && isset($_POST['ID_
     $Prenom = $result['Prenom'];
 ?>
 
-    <form method="POST" action="">
+    <form method="POST" action="modifier_utilisateur.php">
         <input type="hidden" name="ID_Role" value="<?= $ID_Role ?>">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
