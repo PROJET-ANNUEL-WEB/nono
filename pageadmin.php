@@ -8,6 +8,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap.min.css">
     <title> Page admin </title>
 </head>
 
@@ -191,10 +192,64 @@
 ?>
 
 </form>
+<section id="content">
+<div class="container autumn-text  ">
+            <h1>Utilisateurs enregistré récemments</h1>
+        <table id="table1" class="autumn-text1" style="width: 100%">
+            <thead>
+                <tr>
+                    <th scope="col">email</th>
+                    <th scope="col" tyype="password">mot de passe</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Rôle</th>
+                    <th scope="col">Modifier</th>
+                    <th scope="col">Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+
+                $base = new PDO ('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
+
+                $donnees = $base->query("SELECT email , mot_de_passe , Nom, Prenom, ID_Role FROM utilisateur")->fetchAll();
+
+
+                foreach ($donnees as $row) {
+
+                    if ($row['email'] != NULL) {
+                    
+                        ?>
+                        <tr>
+                            <td><h5><?=$row['email'];?></h5></td>
+                            <td><h5><?=$row['mot_de_passe']?></h5></td>
+                            <td><h5><?=$row['Nom']?></h5></td>
+                            <td><h5><?=$row['Prenom']?></h5></td>
+                            <td><h5><?=$row['ID_Role']?></h5></td>
+                            
+                            <!--Nous alons mettre l'id de chaque employé dans ce lien -->
+                           
+                        </tr>
+                        <?php
+                    }
+           
+                }
+                ?>
+                    </section>
+            
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap.min.js"></script>
 
-
+<script type="text/javascript">
+$(document).ready( function () {
+    $('#table1').DataTable( {
+        "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+        }
+    } );
+} );
+</script>
 
 
 </body>
