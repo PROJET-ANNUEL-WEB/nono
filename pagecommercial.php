@@ -197,13 +197,13 @@ mysqli_close($conn);
                             <td>
                                     <form method="post" action="supprimer_frais.php">
                                         <input type="hidden" name="IdEtat" value="<?=$row['IdEtat']?>">
-                                        <button type="submit">Supprimer</button>
+                                        <button type="submit" class="glyphicon glyphicon-trash"></button>
                                     </form>
                                 </td> 
                                 <td>
                                     <form method="post" action="modifier_frais.php">
                                         <input type="hidden" name="Nom" value="<?=$row['Nom']?>">
-                                        <button type="submit" class="glyphicon glyphicon-remove">Modifier</button>
+                                        <button type="submit" class="glyphicon glyphicon-pencil"></button>
                                     </form>
                                 </td> 
                         </tr>
