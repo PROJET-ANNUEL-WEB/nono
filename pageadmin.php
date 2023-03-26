@@ -226,13 +226,13 @@
                                 <td>
                                     <form method="post" action="supprimer_utilisateur.php">
                                         <input type="hidden" name="email" value="<?=$row['email']?>">
-                                        <button type="submit" class="glyphicon glyphicon-pencil"></button>
+                                        <button type="submit border-none" class="glyphicon glyphicon-pencil"></button>
                                     </form>
                                 </td>
                                 <td>
                                     <form method="post" action="supprimer_utilisateur.php">
                                         <input type="hidden" name="email" value="<?=$row['email']?>">
-                                        <button type="submit" class="glyphicon glyphicon-trash"></button>
+                                        <button type="submit border-none" class="glyphicon glyphicon-trash"></button>
                                     </form>
                                 </td>
                             </tr>

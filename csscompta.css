@@ -168,7 +168,7 @@ h1.page-header {
   position: absolute;
   right: 0;
   top: 0;
-  border: 0;
+  border: none;
   border-radius: 0;
   background-color: #757575;
   padding: 15px 18px;
