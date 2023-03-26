@@ -138,7 +138,7 @@ mysqli_close($conn);
 
     <label for="objet"> Objet <em>*</em></label>
     <input id="objet" type="objet" name="objet" placeholder="ex: Repas midi"><br>
-    <input type="" name="ID_utilisateur" value="<?php echo $ID_utilisateur ?>">
+    <input type="hidden" name="ID_utilisateur" value="<?php echo $ID_utilisateur ?>">
 
 
  
@@ -170,8 +170,8 @@ mysqli_close($conn);
                     <th scope="col">Prix</th>
                     <th scope="col">Date</th>
                     <th scope="col">Objet</th>
-                    <th scope="col">Valider</th>
-                    <th scope="col">Refuser</th>
+                    <th scope="col">Supprimer</th>
+                    <th scope="col">Modifier</th>
                 </tr>
             </thead>
             <tbody>
@@ -194,10 +194,18 @@ mysqli_close($conn);
                             <td><h5><?=$row['Montant']?></h5></td>
                             <td><h5><?=$row['Date_de_frais']?></h5></td>
                             <td><h5><?=$row['objet']?></h5></td>
-                            
-                            <!--Nous alons mettre l'id de chaque employé dans ce lien -->
-                           <td><a href="valide.php?id=<?=$row['ID_frais']?>"><img src="images/icons/valid.png" width=30px height=auto></a></td> 
-                            <td><a href="refus.php?id=<?=$row['ID_frais']?>"><img src="images/icons/trash.png" width=30px height=auto></a></td> 
+                            <td>
+                                    <form method="post" action="supprimer_frais.php">
+                                        <input type="hidden" name="IdEtat" value="<?=$row['IdEtat']?>">
+                                        <button type="submit">Supprimer</button>
+                                    </form>
+                                </td> 
+                                <td>
+                                    <form method="post" action="modifier_frais.php">
+                                        <input type="hidden" name="Nom" value="<?=$row['Nom']?>">
+                                        <button type="submit">Modifier</button>
+                                    </form>
+                                </td> 
                         </tr>
                         <?php
                     }
