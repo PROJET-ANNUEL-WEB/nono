@@ -1,3 +1,4 @@
+
 <?php
 // Connexion à la base de données
 $base = new PDO('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
