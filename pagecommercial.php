@@ -203,7 +203,7 @@ mysqli_close($conn);
                                 <td>
                                     <form method="post" action="modifier_frais.php">
                                         <input type="hidden" name="Nom" value="<?=$row['Nom']?>">
-                                        <button type="submit">Modifier</button>
+                                        <button type="submit" class="glyphicon glyphicon-remove">Modifier</button>
                                     </form>
                                 </td> 
                         </tr>
