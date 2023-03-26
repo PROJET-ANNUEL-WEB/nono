@@ -195,9 +195,9 @@
 <section id="content">
 <div class="container autumn-text  ">
             <h1>Utilisateurs enregistré récemments</h1>
-        <table id="table1" class="autumn-text1" style="width: 100%">
+        <table id="table1" class="autumn-text1 tableuser" style="width: 100%">
             <thead>
-                <tr>
+                <tr class="tableuser">
                     <th scope="col">email</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
@@ -214,25 +214,27 @@
                 $donnees = $base->query("SELECT email ,  Nom, Prenom, ID_Role FROM utilisateur")->fetchAll();
 
 
-                foreach ($donnees as $row) {
-
-                    if ($row['email'] != NULL) {
-                    
-                        ?>
-                        <tr>
-                            <td><h5><?=$row['email'];?></h5></td>
-                            <td><h5><?=$row['Nom']?></h5></td>
-                            <td><h5><?=$row['Prenom']?></h5></td>
-                            <td><h5><?=$row['ID_Role']?></h5></td>
-                            
-                            <!--Nous alons mettre l'id de chaque employé dans ce lien -->
-                           
-                        </tr>
-                        <?php
+                
+                    foreach ($donnees as $row) {
+                        if ($row['email'] != NULL) {
+                    ?>
+                            <tr>
+                                <td><h5><?=$row['email'];?></h5></td>
+                                <td><h5><?=$row['Nom']?></h5></td>
+                                <td><h5><?=$row['Prenom']?></h5></td>
+                                <td><h5><?=$row['ID_Role']?></h5></td>
+                                <td>
+                                    <form method="post" action="supprimer_utilisateur.php">
+                                        <input type="hidden" name="email" value="<?=$row['email']?>">
+                                        <button type="submit">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                    <?php
+                        }
                     }
-           
-                }
-                ?>
+                    ?>
+
                     </section>
             
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
