@@ -41,7 +41,7 @@
 
             // Mettre à jour l'utilisateur dans la base de données
             // (à remplacer avec votre code de mise à jour de la base de données)
-            $sql = "UPDATE utilisateurs SET nom='$nom', Prenom='$prenom', adresse='$adresse' WHERE email='$email'";
+            $sql = "UPDATE utilisateurs SET Nom='$Nom', Prenom='$Prenom', adresse='$adresse' WHERE email='$email'";
             $result = mysqli_query($db, $sql);
 
             // Rediriger vers la page des utilisateurs
