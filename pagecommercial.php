@@ -197,7 +197,7 @@ mysqli_close($conn);
                             <td><h5><?=$row['objet']?></h5></td>
                             <td>
                                     <form method="post" action="supprimer_frais.php">
-                                        <input type="hidden" name="IdEtat" value="<?=$row['IdEtat']?>">
+                                        <input type="hidden" name="Montant" value="<?=$row['Montant']?>">
                                         <button type="submit" class="glyphicon glyphicon-trash"></button>
                                     </form>
                                 </td> 
