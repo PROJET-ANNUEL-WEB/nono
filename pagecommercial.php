@@ -226,7 +226,6 @@ mysqli_close($conn);
         <table id="table2" class="table hover autumn-text1" style="width: 100%">
             <thead>
                 <tr>
-                    <th scope="col">Créateur</th>
                     <th scope="col">Type</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Date</th>
@@ -237,32 +236,35 @@ mysqli_close($conn);
             </thead>
             <tbody>
 
-                <?php
+            <?php
+                $ID_utilisateur = $_SESSION['ID_utilisateur'];
+                $pdo = new PDO ('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
 
-                $base = new PDO ('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
-
-                $donnees = $base->query("SELECT utilisateur.Nom ,frais.ID_frais, type_de_frais.idType , frais.Date_de_frais , frais.Montant , frais.objet , etat_du_frais.IdEtat FROM frais JOIN utilisateur ON frais.ID_utilisateur=utilisateur.ID_utilisateur JOIN Type_de_frais ON frais.IDType=Type_de_frais.IDType JOIN etat_du_frais ON frais.IdEtat=etat_du_frais.IdEtat ORDER BY frais.Date_de_frais DESC")->fetchAll();
-
-                foreach ($donnees as $row)
+                $sql = "SELECT * FROM frais WHERE ID_utilisateur = :ID_utilisateur";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':ID_utilisateur', $ID_utilisateur);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                foreach ($result as $row)
                 
 
                     if ($row['IdEtat']!= 3) {
                     
                         ?>
                         <tr>
-                            <td><h5><?=$row['Nom'];?></h5></td>
+                            
                             <td><h5><?=$row['idType']?></h5></td>
                             <td><h5><?=$row['Montant']?></h5></td>
                             <td><h5><?=$row['Date_de_frais']?></h5></td>
                             <td><h5><?=$row['objet']?></h5></td>
                             
                             <?php
-                        foreach ($donnees as $row) {
+                        foreach ($result as $row) {
                             if($row['IdEtat']!= 3)
                                 if ($row['IdEtat']== 1)  {
                                     ?>
                                     <td><img src="images/icons/valid.png" width=30px height=auto></a></td>
-                                    <td><a href="refus.php?id=<?=$row['ID_frais']?>"><img src="images/icons/trash.png" width=30px height=auto></a></td>
+                                    <td><a href="refus.php?id=<?=$row['Montant']?>"><img src="images/icons/trash.png" width=30px height=auto></a></td>
                                 </tr>
                                     <?php
                                 }                          
@@ -270,7 +272,7 @@ mysqli_close($conn);
                                 else if($row['IdEtat']== 2) {
                                     ?>
                                     <td><img src="images/icons/trash.png" width=30px height=auto></a></td>
-                                    <td><a href="valide.php?id=<?=$row['ID_frais']?>"><img src="images/icons/valid.png" width=30px height=auto></a></td>
+                                    <td><a href="valide.php?id=<?=$row['Montant']?>"><img src="images/icons/valid.png" width=30px height=auto></a></td>
                                 </tr>
                                     <?php
 
