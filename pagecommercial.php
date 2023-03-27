@@ -187,7 +187,7 @@ mysqli_close($conn);
                 $stmt->execute();
                 $result = $stmt->fetchAll();
                 foreach ($result as $row) {
-                    
+                    if ($row['IdEtat'] == 3) {
                         ?>
                         <tr>
                            
@@ -211,7 +211,7 @@ mysqli_close($conn);
                         <?php
                     }
            
-                
+                }
                                     
                 ?>
             </tbody>
