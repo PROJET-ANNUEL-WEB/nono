@@ -26,7 +26,7 @@ session_start();
 
 <nav class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
+            
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
                     MENU
@@ -42,7 +42,7 @@ session_start();
                 </a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
+           
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left" method="GET" role="search">
                     <div class="form-group">
@@ -166,7 +166,7 @@ mysqli_close($conn);
     
             <thead>
                 <tr>
-                    <th scope="col">Créateur</th>
+                    
                     <th scope="col">Type</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Date</th>
@@ -178,19 +178,19 @@ mysqli_close($conn);
             <tbody>
 
                 <?php
+                $ID_utilisateur = $_SESSION['ID_utilisateur'];
+                $pdo = new PDO ('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
 
-                $base = new PDO ('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
-
-                $donnees = $base->query("SELECT utilisateur.Nom ,frais.ID_frais, type_de_frais.idType , frais.Date_de_frais , frais.Montant , frais.objet , etat_du_frais.IdEtat FROM frais JOIN utilisateur ON frais.ID_utilisateur=utilisateur.ID_utilisateur JOIN Type_de_frais ON frais.IDType=Type_de_frais.IDType JOIN etat_du_frais ON frais.IdEtat=etat_du_frais.IdEtat ORDER BY frais.Date_de_frais DESC")->fetchAll();
-
-
-                foreach ($donnees as $row) {
-
-                    if ($row['IdEtat']== 3) {
+                $sql = "SELECT * FROM frais WHERE ID_utilisateur = :ID_utilisateur";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':ID_utilisateur', $ID_utilisateur);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                foreach ($result as $row) {
                     
                         ?>
                         <tr>
-                            <td><h5><?=$row['Nom'];?></h5></td>
+                           
                             <td><h5><?=$row['idType']?></h5></td>
                             <td><h5><?=$row['Montant']?></h5></td>
                             <td><h5><?=$row['Date_de_frais']?></h5></td>
@@ -203,7 +203,7 @@ mysqli_close($conn);
                                 </td> 
                                 <td>
                                     <form method="post" action="modifier_frais.php">
-                                        <input type="hidden" name="Nom" value="<?=$row['Nom']?>">
+                                        <input type="hidden" name="Montant" value="<?=$row['Montant']?>">
                                         <button type="submit" class="glyphicon glyphicon-pencil"></button>
                                     </form>
                                 </td> 
@@ -211,7 +211,7 @@ mysqli_close($conn);
                         <?php
                     }
            
-                }
+                
                                     
                 ?>
             </tbody>

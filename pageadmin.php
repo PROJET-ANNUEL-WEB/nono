@@ -223,7 +223,7 @@
                                 <td><h5><?=$row['Prenom']?></h5></td>
                                 <td><h5><?=$row['ID_Role']?></h5></td>
                                 <td>
-                                    <form method="post" action="supprimer_utilisateur.php">
+                                    <form method="post" action="modifier_utilisateurs.php">
                                         <input type="hidden" name="email" value="<?=$row['email']?>">
                                         <button type="submit border-none" class="glyphicon glyphicon-pencil"></button>
                                     </form>
