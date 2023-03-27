@@ -18,5 +18,3 @@ if (isset($_POST['email'])) {
         exit();
     }
 }
-?>
-
