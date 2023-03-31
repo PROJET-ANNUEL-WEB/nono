@@ -148,7 +148,7 @@
 
             <div class="mb-3">
                 <label for="IDRole" class="form-label">Numéro de Rôle</label>
-                <input type="text" name="ID_Role" class="form-control" id="IDRole">
+                <select type="text" name="ID_Role" class="form-control" id="IDRole">
             </div>
 
             <div class="mb-3">
