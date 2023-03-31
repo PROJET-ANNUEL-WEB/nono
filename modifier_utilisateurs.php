@@ -1,5 +1,5 @@
 <div class="container">
-<h3>Enregistrer un utilisateur</h3>
+    <h3>Enregistrer un utilisateur</h3>
     <div class="row">
         <form action="modifier_utilisateurs.php" method="post">
             <div class="mb-3">
@@ -30,21 +30,21 @@
             <input type="submit" class="btn btn-primary" value="Enregistrer"></input>
 
 
-<?php
-// Récupérer les données du formulaire
-$db = new PDO('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
+            <?php
+            // Récupérer les données du formulaire
+            $db = new PDO('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
 
-$email = $_POST['email'];
-$Nom = $_POST['Nom'];
-$Prenom = $_POST['Prenom'];
-$ID_Role = $_POST['ID_Role'];
+            $email = $_POST['email'];
+            $Nom = $_POST['Nom'];
+            $Prenom = $_POST['Prenom'];
+            $ID_Role = $_POST['ID_Role'];
 
-// Mettre à jour l'utilisateur dans la base de données
-// (à remplacer avec votre code de mise à jour de la base de données)
-$sql = "UPDATE utilisateurs SET nom='$nom', renom='$prenom', adresse='$adresse' WHERE email='$email'";
-$result = mysqli_query($db, $sql);
+            // Mettre à jour l'utilisateur dans la base de données
+            // (à remplacer avec votre code de mise à jour de la base de données)
+            $sql = "UPDATE utilisateurs SET Nom='$Nom', Prenom='$Prenom', adresse='$adresse' WHERE email='$email'";
+            $result = mysqli_query($db, $sql);
 
-// Rediriger vers la page des utilisateurs
-header("Location: pageadmin.php");
-exit();
-?>
+            // Rediriger vers la page des utilisateurs
+            header("Location: pageadmin.php");
+            exit();
+            ?>
