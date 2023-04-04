@@ -139,6 +139,8 @@ mysqli_close($conn);
     <label for="objet"> Objet <em>*</em></label>
     <input id="objet" type="objet" name="objet" placeholder="ex: Repas midi"><br>
     <input type="hidden" name="ID_utilisateur" value="<?php echo $ID_utilisateur ?>">
+    <input type="hidden" name="ID_Frais" value="">
+
 
 
  
@@ -167,6 +169,8 @@ mysqli_close($conn);
             <thead>
                 <tr>
                     
+                    
+                    
                     <th scope="col">Type</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Date</th>
@@ -176,44 +180,49 @@ mysqli_close($conn);
                 </tr>
             </thead>
             <tbody>
+            <?php
+$ID_utilisateur = $_SESSION['ID_utilisateur'];
+$pdo = new PDO ('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
 
-                <?php
-                $ID_utilisateur = $_SESSION['ID_utilisateur'];
-                $pdo = new PDO ('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
+$sql = "SELECT * FROM frais WHERE ID_utilisateur = :ID_utilisateur";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':ID_utilisateur', $ID_utilisateur);
+$stmt->execute();
+$result = $stmt->fetchAll();
+$ID_Frais = NULL;
 
-                $sql = "SELECT * FROM frais WHERE ID_utilisateur = :ID_utilisateur";
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(':ID_utilisateur', $ID_utilisateur);
-                $stmt->execute();
-                $result = $stmt->fetchAll();
-                foreach ($result as $row) {
-                    if ($row['IdEtat'] == 3) {
-                        ?>
-                        <tr>
-                           
-                            <td><h5><?=$row['idType']?></h5></td>
-                            <td><h5><?=$row['Montant']?></h5></td>
-                            <td><h5><?=$row['Date_de_frais']?></h5></td>
-                            <td><h5><?=$row['objet']?></h5></td>
-                            <td>
-                                    <form method="post" action="supprimer_frais.php">
-                                        <input type="hidden" name="Montant" value="<?=$row['Montant']?>">
-                                        <button type="submit" class="glyphicon glyphicon-trash"></button>
-                                    </form>
-                                </td> 
-                                <td>
-                                    <form method="post" action="modifier_frais.php">
-                                        <input type="hidden" name="Montant" value="<?=$row['Montant']?>">
-                                        <button type="submit" class="glyphicon glyphicon-pencil"></button>
-                                    </form>
-                                </td> 
-                        </tr>
-                        <?php
-                    }
-           
-                }
-                                    
-                ?>
+foreach ($result as $row) {
+    if ($row['IdEtat'] == 3) {
+        
+        ?>
+        <tr>
+            <td><h5><?=$row['idType']?></h5></td>
+            <td><h5><?=$row['Montant']?></h5></td>
+            <td><h5><?=$row['Date_de_frais']?></h5></td>
+            <td><h5><?=$row['objet']?></h5></td>
+            
+            <td>
+                <form method="post" action="supprimer_frais.php">
+                    <input type="hidden" name="ID_Frais" value="<?=$row['ID_Frais']?>">
+                    <button type="submit" class="glyphicon glyphicon-trash"></button>
+                </form>
+            </td> 
+            <td>
+                <form method="post" action="modifier_frais.php">
+                    <input type="hidden" name="ID_Frais" value="<?=$row['ID_Frais']?>">
+                    <button type="submit" class="glyphicon glyphicon-pencil"></button>
+                </form>
+            </td> 
+        </tr>
+        <?php
+    }
+}
+
+if ($ID_Frais !== NULL) {
+    // Utiliser $ID_Frais ici
+}
+?>
+
             </tbody>
         </table> 
     </div>

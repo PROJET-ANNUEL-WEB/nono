@@ -147,8 +147,36 @@
             </div>
 
             <div class="mb-3">
-                <label for="IDRole" class="form-label">Numéro de Rôle</label>
-                <select type="text" name="ID_Role" class="form-control" id="IDRole">
+            <?php
+                // Connexion à la base de données
+                $dsn = "mysql:host=localhost;dbname=projetannuel;charset=utf8mb4";
+                $username = "root";
+                $password = "";
+
+                try {
+                    $pdo = new PDO($dsn, $username, $password);
+                } catch (PDOException $e) {
+                    die("Connexion échouée : " . $e->getMessage());
+                }
+
+                // Requête pour récupérer les rôles
+                $sql = "SELECT ID_Role FROM roles";
+
+                // Exécution de la requête
+                $stmt = $pdo->query($sql);
+
+                // Création de la liste déroulante HTML
+                echo "<select name='ID_Role'>";
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<option value='" . $row['ID_Role'] . "'>" . $row['ID_Role'] . "</option>";
+                }
+                echo "</select>";
+
+                // Fermeture de la connexion
+                $pdo = null;
+                ?>
+
+
             </div>
 
             <div class="mb-3">

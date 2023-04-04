@@ -3,14 +3,14 @@
 $base = new PDO('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
 
 // Vérification de l'adresse e-mail de l'utilisateur à supprimer
-if (isset($_POST['Montant'])) {
-    $Montant = $_POST['Montant'];
+if (isset($_POST['ID_Frais'])) {
+    $ID_Frais = $_POST['ID_Frais'];
 
     // Vérification si l'utilisateur existe dans la base de données
-    $objet = $base->query("SELECT * FROM frais WHERE Montant = '$Montant'")->fetch();
+    $objet = $base->query("SELECT * FROM frais WHERE ID_Frais = '$ID_Frais'")->fetch();
     if ($objet) {
         // Suppression de l'utilisateur
-        $base->query("DELETE FROM frais WHERE Montant = '$Montant'");
+        $base->query("DELETE FROM frais WHERE ID_Frais = '$ID_Frais'");
 
         // Redirection vers la page des utilisateurs enregistrés
         header('Location: pagecommercial.php');
