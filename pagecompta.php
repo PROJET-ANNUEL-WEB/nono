@@ -100,7 +100,7 @@
                 <body>
 <div class="container">
     <div class="row">
-    <form action="pagescompta.php" method="post">
+    <form action="etatfrais.php" method="post">
 
 
 <section id="content">
@@ -158,8 +158,8 @@
                     <form method="post" action="etatfrais.php">
                         <input type="hidden" name="ID_frais" value="<?=$row['ID_frais']?>">
                         <button type="submit" name="nouvel_etat" value="1" class="btn btn-success">Validé</button>
-                        <button type="submit" name="nouvel_etat" value="2" class="btn btn-info">En attente</button>
-                        <button type="submit" name="nouvel_etat" value="3" class="btn btn-warning">Refusé</button>
+                        <button type="submit" name="nouvel_etat" value="3" class="btn btn-info">En attente</button>
+                        <button type="submit" name="nouvel_etat" value="2" class="btn btn-warning">Refusé</button>
                     </form>
                 </div>
             </div>
@@ -225,7 +225,30 @@ foreach ($donnees as $row) {
     } else { ?>
         <td></td>
     <?php } ?>
-    <td><a class="glyphicon glyphicon-pencil"><img width=30px height=auto></a></td>
+    <td>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?=$row['ID_frais']?>">Modifier l'état</button>
+    <div class="modal fade" id="modal<?=$row['ID_frais']?>" tabindex="-1" role="dialog" aria-labelledby="modal<?=$row['ID_frais']?>Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal<?=$row['ID_frais']?>Label">Modifier l'état du frais</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Choisissez le nouvel état du frais :</p>
+                    <form method="post" action="etatfrais.php">
+                        <input type="hidden" name="ID_frais" value="<?=$row['ID_frais']?>">
+                        <button type="submit" name="nouvel_etat" value="1" class="btn btn-success">Validé</button>
+                        <button type="submit" name="nouvel_etat" value="3" class="btn btn-info">En attente</button>
+                        <button type="submit" name="nouvel_etat" value="2" class="btn btn-warning">Refusé</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
 </tr>
         <?php
     }
