@@ -224,7 +224,7 @@ $(document).ready(function() {
     "language": {
       "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
     }
-  }).column(0).visible(false);
+  });
 });
 
 </script>
