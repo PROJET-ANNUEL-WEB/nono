@@ -142,7 +142,7 @@ if ($role == 'admin') {
     </tbody>
 </table>
 
-<h3>Utilisateurs enregistré récemments</h3>
+<h3>Utilisateurs désactivés</h3>
             <table id="table1" class="autumn-text1 tableuser" style="width: 100%">
     <thead>
         <tr class="tableuser">
