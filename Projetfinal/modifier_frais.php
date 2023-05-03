@@ -1,15 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="fr">
 <head>
-<link href="modifrais.css?<?php echo time(); ?>" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="admin.css?<?php echo time(); ?>" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Modifier un utilisateur</title>
 </head>
 <body>
     
 
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Modifier un utilisateur</h1>
 
 <?php
 session_start();
@@ -61,18 +73,18 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<form method="post" action="modifier_frais.php">
-    <label for="idType">Type</label>
-    <input type="text" name="idType" value="<?=$result['idType']?>">
+<form class="form2" method="post" action="modifier_frais.php">
+    <label class="form-label zoe" for="idType">Type</label>
+    <input type="text" class="form-control zoe2" name="idType" value="<?=$result['idType']?>">
 
-    <label for="Montant">Prix</label>
-    <input type="text" name="Montant" value="<?=$result['Montant']?>">
+    <label class="form-label zoe" for="Montant">Prix</label>
+    <input type="text" class="form-control zoe2" name="Montant" value="<?=$result['Montant']?>">
 
-    <label for="Date_de_frais">Date</label>
-    <input type="text" name="Date_de_frais" value="<?=$result['Date_de_frais']?>">
+    <label class="form-label zoe" for="Date_de_frais">Date</label>
+    <input type="text" class="form-control zoe2" name="Date_de_frais" value="<?=$result['Date_de_frais']?>">
 
-    <label for="objet">Objet</label>
-    <input type="text" name="objet" value="<?=$result['objet']?>">
+    <label class="form-label zoe" for="objet">Objet</label>
+    <input type="text" class="form-control zoe2" name="objet" value="<?=$result['objet']?>">
 
   
 
