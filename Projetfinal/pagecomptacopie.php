@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
+
 <head>
-	
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-<link href="csscompta.css?<?php echo time(); ?>" rel="stylesheet">
-<!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" src="logom.ico"/>
+    <link href="compta.css" rel="stylesheet" id="bootstrap-css">
+    <script type="text/javascript" src="admin.js"></script> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap.min.css">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title> Comptabilité </title>
 </head>
 
@@ -100,7 +99,7 @@
                 <body>
 <div class="container">
     <div class="row">
-    <form action="etatfrais.php" method="post">
+    <form action="pagescompta.php" method="post">
 
 
 <section id="content">
@@ -110,14 +109,13 @@
         <table id="table1" class="autumn-text1" style="width: 100%">
             <thead>
                 <tr>
-                    <th scope="col">ID_frais</th>
                     <th scope="col">Créateur</th>
                     <th scope="col">Type</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Date</th>
                     <th scope="col">Objet</th>
-                    <th scope="col">Validé/Refusé</th>
-                    
+                    <th scope="col">Valider</th>
+                    <th scope="col">Refuser</th>
                 </tr>
             </thead>
             <tbody>
@@ -135,44 +133,26 @@
                     
                         ?>
                         <tr>
-                            <td><h5><?=$row['ID_frais'];?></h5></td>
                             <td><h5><?=$row['Nom'];?></h5></td>
                             <td><h5><?=$row['idType']?></h5></td>
                             <td><h5><?=$row['Montant']?></h5></td>
                             <td><h5><?=$row['Date_de_frais']?></h5></td>
-                            <td><h5><?=$row['objet']?></h5></td>                          
-                            <!-- Ajoutez le code suivant dans votre boucle foreach -->
-<td>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?=$row['ID_frais']?>">Modifier l'état</button>
-    <div class="modal fade" id="modal<?=$row['ID_frais']?>" tabindex="-1" role="dialog" aria-labelledby="modal<?=$row['ID_frais']?>Label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal<?=$row['ID_frais']?>Label">Modifier l'état du frais</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Choisissez le nouvel état du frais :</p>
-                    <form method="post" action="etatfrais.php">
-                        <input type="hidden" name="ID_frais" value="<?=$row['ID_frais']?>">
-                        <button type="submit" name="nouvel_etat" value="1" class="btn btn-success">Validé</button>
-                        <button type="submit" name="nouvel_etat" value="3" class="btn btn-info">En attente</button>
-                        <button type="submit" name="nouvel_etat" value="2" class="btn btn-warning">Refusé</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</td>
-
-
-                      
+                            <td><h5><?=$row['objet']?></h5></td>
+                            
+                            <td>
+                                    <form method="post" action="supprimer_frais.php">
+                                        <input type="hidden" name="IdEtat" value="<?=$row['IdEtat']?>">
+                                        <button type="submit" class="glyphicon glyphicon-ok"></button>
+                                    </form>
+                            </td> 
+                            <td>
+                                <form method="post" action="modifier_frais.php">
+                                    <input type="hidden" name="Nom" value="<?=$row['Nom']?>">
+                                    <button type="submit" class="glyphicon glyphicon-remove"></button>
+                                </form>
+                            </td>                       
                         </tr>
                         <?php
-                    
-
                     }
            
                 }
@@ -196,7 +176,12 @@
                      <th scope="col">Objet</th> 
                      <th scope="col">Etat</th>
                      <th></th>
+                 <!--    <th scope="col">Editer</th> -->
 
+
+
+
+ <!-- @@ -237,40 +236,43 @@ -->
              </thead>
              <tbody>
 
@@ -218,37 +203,14 @@ foreach ($donnees as $row) {
     <?php
     if ($row['IdEtat']!= 3) {
         if ($row['IdEtat']== 1)  { ?>
-            <td colspan="2"><a href="valid_frais.php?id=<?=$row['ID_frais']?>" class="glyphicon glyphicon-thumbs-up"><img width=30px height=auto></a></td>
+            <td colspan="2"><a href="refus.php?id=<?=$row['ID_frais']?>" class="glyphicon glyphicon-thumbs-up"><img width=30px height=auto></a></td>
         <?php } else if($row['IdEtat']== 2) { ?>
-            <td colspan="2"><a href="valid_frais.php?id=<?=$row['ID_frais']?>" class="glyphicon glyphicon-thumbs-down"><img width=30px height=auto></a></td>
+            <td colspan="2"><a href="valide.php?id=<?=$row['ID_frais']?>" class="glyphicon glyphicon-thumbs-down"><img width=30px height=auto></a></td>
         <?php }
     } else { ?>
         <td></td>
     <?php } ?>
-    <td>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?=$row['ID_frais']?>">Modifier l'état</button>
-    <div class="modal fade" id="modal<?=$row['ID_frais']?>" tabindex="-1" role="dialog" aria-labelledby="modal<?=$row['ID_frais']?>Label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal<?=$row['ID_frais']?>Label">Modifier l'état du frais</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Choisissez le nouvel état du frais :</p>
-                    <form method="post" action="etatfrais.php">
-                        <input type="hidden" name="ID_frais" value="<?=$row['ID_frais']?>">
-                        <button type="submit" name="nouvel_etat" value="1" class="btn btn-success">Validé</button>
-                        <button type="submit" name="nouvel_etat" value="3" class="btn btn-info">En attente</button>
-                        <button type="submit" name="nouvel_etat" value="2" class="btn btn-warning">Refusé</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</td>
+    <td><a class="glyphicon glyphicon-pencil"><img width=30px height=auto></a></td>
 </tr>
         <?php
     }
@@ -260,11 +222,14 @@ foreach ($donnees as $row) {
 
             </section>
 
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 
 
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js"integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.6.3.min.js"
+  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+  crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -273,7 +238,7 @@ foreach ($donnees as $row) {
 
 <script type="text/javascript">
 $(document).ready( function () {
-    $('#table1').DataTable(0).column().visible(false)( {
+    $('#table1').DataTable( {
         "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
         }

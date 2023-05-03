@@ -9,7 +9,7 @@ session_start();
 <head>
     <script> src="facture.js"</script>
     <link rel="icon" type="image/png" href="images/icons/favicon.ico" src="logom.ico"/>
-    <link href="csscompta.css" rel="stylesheet" id="bootstrap-css">
+    <link href="salarie.css" rel="stylesheet" id="bootstrap-css">
     <script type="text/javascript" src="admin.js"></script> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -28,9 +28,26 @@ session_start();
             <div class="navbar-header">
                 <a href="pagesalarie.php"><img src="logom.png" alt="Logo MW" style="height:50px;display:inline-block;margin-right:10px;"></a>                   
 
-                <a class="navbar-brand" >
-                   Connecté en tant que Commercial 
-                </a>
+                <<section id="content">
+    <div class="container autumn-text">
+    <?php
+                        if(isset($_SESSION['Nom'])){
+                            $Nom= $_SESSION['Nom'];
+                        }
+    ?>
+        <h1>Bonjour <?php echo $Nom; ?>,</h1>
+        <h2>Entrez vos frais ci-dessous :</h2>
+        <!-- ... Le reste du contenu de la page ... -->
+    </div>
+</section>
+
+
+
+
+
+
+
+
 
                 <button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
                     MENU
@@ -87,7 +104,7 @@ session_start();
                         <!-- Main Menu -->
                         <div class="side-menu-container">
                             <ul class="nav navbar-nav">
-                                <li><a href="pageadminfrais.php"><span class="glyphicon glyphicon-usd"></span> Frais</a></li>
+                                <li><a href="pagesalarie.php"><span class="glyphicon glyphicon-usd"></span> Frais</a></li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
                     </nav>
@@ -104,7 +121,7 @@ session_start();
                 <body>
 <div class="container">
     <div class="row">
-    <form action="pagecommerciale.php" method="post">
+    <form action="pagesalarie.php" method="post">
 <?php
 // Connexion à la base de données MySQL
 $servername = "localhost";
@@ -120,7 +137,8 @@ if (!$conn) {
 }
 if(isset($_SESSION['ID_utilisateur'])){
     $ID_utilisateur = $_SESSION['ID_utilisateur'];
-} 
+   
+}
 
 // Vérifiez si le formulaire a été soumis
 if (isset($_POST['btn'])) {
@@ -142,17 +160,17 @@ if (isset($_POST['btn'])) {
         }
     }
 
-          -
+          
  
 
 // Fermeture de la connexion à la base de données
-mysqli_close($conn);
+
 ?>
 
 
 <div class="container">
 <h2>Formulaire de saisie de frais </h2>
-<form action="pagecommerciale.php">
+<form action="#">
   <p><i>Complétez le formulaire. Les champs marqué par </i><em>*</em> sont <em>obligatoires</em></p>
   <fieldset>
     <legend></legend>
@@ -267,37 +285,7 @@ mysqli_close($conn);
 <p><input type="submit" value="Soummettre" name="btn"></p>
             </form>
 
-<?php 
 
-// Vérifiez si le formulaire a été soumis
-if (isset($_POST['btn'])) {
-    // Récupération des données du formulaire
-    $Date_de_frais = $_POST['Date_de_frais'];
-    $Montant = $_POST['Montant'];
-    $objet = $_POST['objet'];
-    $category = $_POST['idType'];
-    $ID_utilisateur = $_POST['ID_utilisateur'];
-
-    // Traitement de l'image
-$image_base64 = '';
-if(isset($_FILES['fileToUpload']['tmp_name'])){
-    $image_path = $_FILES['fileToUpload']['tmp_name'];
-    $image_type = $_FILES['fileToUpload']['type'];
-    $image_data = file_get_contents($image_path);
-    $image_base64 = 'data:' . $image_type . ';base64,' . base64_encode($image_data);
-}
-
-// Insertion des données dans la base de données
-$sql = "INSERT INTO frais (Montant, Date_de_frais,  idType, ID_utilisateur, objet, image)
-        VALUES  ('$Montant','$Date_de_frais', '$category', '$ID_utilisateur','$objet', '$image_base64')";
-      
-      if (mysqli_query($conn, $sql)) {
-        echo "Les données ont été insérées avec succès.";
-    } else {
-        echo "Erreur: " . $sql . "<br>" . mysqli_error($conn);
-    }
-} 
-?>
 
 <section id="content">
 
@@ -340,10 +328,10 @@ $sql = "INSERT INTO frais (Montant, Date_de_frais,  idType, ID_utilisateur, obje
                                     </form>
                                 </td> 
                                 <td>
-                                    <form method="post" action="modifier_frais.php">
-                                        <input type="hidden" name="Montant" value="<?=$row['Montant']?>">
-                                        <button type="submit" class="glyphicon glyphicon-pencil"></button>
-                                    </form>
+                                <form method="post" action="modifier_frais.php">
+                                    <input type="hidden" name="ID_Frais" value="<?=$row['ID_Frais']?>">
+                                    <button type="submit border-none" class="glyphicon glyphicon-pencil"></button>
+                                </form>
                                 </td> 
                         </tr>
                         <?php

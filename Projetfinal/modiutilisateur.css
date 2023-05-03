@@ -1,0 +1,80 @@
+/* Définition des couleurs automnales */
+:root {
+  --primary-color: #f7c08f; /* Brun-rouge */
+  --secondary-color: #F2CDA6; /* Beige */
+  --accent-color: #8e6e6c; /* Rouge foncé */
+}
+
+/* Styles de base */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1d0b4;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgb(238, 224, 184);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+/* Styles de formulaire */
+form {
+  width: 100%;
+}
+
+.form-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.form-control {
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid var(--secondary-color);
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: var(--accent-color);
+}
+
+/* Styles de titre */
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+}
+.pichon {
+background-color: #f7c08f;
+}

@@ -1,0 +1,39 @@
+.label
+{
+	display: block;
+	width: 150px;
+	float: left;
+}
+
+
+#form_login {
+    left: 50%;
+    top: 50%;
+    margin-left: -25%;
+    position: absolute;
+    margin-top: -25%;
+}
+
+#form_button {
+    left: 50%;
+	bottom: 50%;
+    margin-left: -25%;
+    position: absolute;
+    margin-top: -25%;
+}
+
+
+.display {
+    left: 50%;
+	bottom: 50%;
+    margin-left: -25%;
+    position: absolute;
+    margin-top: -25%;
+}
+
+header img {
+    height: 50px;
+    width: auto;
+  }
+
+  

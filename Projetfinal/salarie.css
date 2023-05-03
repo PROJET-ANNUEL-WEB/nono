@@ -1,0 +1,180 @@
+/* Couleurs principales */
+:root {
+  --couleur-principale: #b3494a; /* Rouge foncé */
+  --couleur-secondaire: #c37756; /* Orange-brun */
+  --couleur-tertiaire: #d4af37; /* Or */
+}
+
+/* Styles généraux */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5deb3; /* Beige clair */
+  color: #333; /* Gris foncé */
+}
+
+.container {
+  margin: 20px auto;
+  max-width: 600px;
+  background-color: #fff; /* Blanc */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: var(--couleur-principale);
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+legend {
+  display: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--couleur-principale);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid var(--couleur-secondaire);
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--couleur-tertiaire);
+}
+
+input[type="submit"] {
+  background-color: var(--couleur-principale);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--couleur-tertiaire);
+}
+
+/* Styles spécifiques */
+.input-icon {
+  position: relative;
+}
+
+.input-icon i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+#preview {
+  margin-top: 10px;
+}
+
+#preview img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border: 2px solid var(--couleur-secondaire);
+  border-radius: 5px;
+}
+/* Pour la section principale */
+
+body {
+  background-color: #f2f2f2;
+}
+
+#main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Pour les en-têtes de section */
+
+section h1 {
+  margin-top: 0;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Pour les tables */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+thead {
+  background-color: #f4edeb;
+}
+
+th {
+  text-align: left;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Pour les boutons */
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.glyphicon {
+  display: inline-block;
+  font-family: "Glyphicons Halflings";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glyphicon-trash:before {
+  content: "\e020";
+}
+
+.glyphicon-pencil:before {
+  content: "\e030";
+}

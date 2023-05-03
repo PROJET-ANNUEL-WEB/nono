@@ -1,0 +1,56 @@
+body {
+    background-color: #f5e5d7;
+  }
+  
+  form {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    max-width: 500px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #64403e;
+  }
+  
+  input[type="text"],
+  select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f9ddc3;
+    margin-top: 5px;
+    color: #64403e;
+  }
+  
+  select option {
+    background-color: #ffffff;
+    color: #64403e;
+  }
+  
+  button[type="submit"] {
+    display: block;
+    margin-top: 20px;
+    background-color: #64403e;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #8d6b68;
+  }
+  
+  input[type="hidden"] {
+    display: none;
+  }
+  

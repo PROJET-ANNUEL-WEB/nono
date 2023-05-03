@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-<link href="csscompta.css?<?php echo time(); ?>" rel="stylesheet">
+<link href="compta.css?<?php echo time(); ?>" rel="stylesheet">
 <!--===============================================================================================-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
@@ -51,15 +50,10 @@
                 <?php
 
                        /* echo(`.$ID_utilisateur.`);
-
                             $db = new PDO('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', 'root');
                             $stmt = $db->prepare("SELECT ID_role FROM utilisateur WHERE ID_utilisateur = $ID_utilisateur");
-
                             $stmt->bindParam(':ID_utilisateur', $ID_utilisateur);
                             $stmt->execute();
-
-
-
                         */
                         ?> 
 
