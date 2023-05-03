@@ -2,126 +2,70 @@
 session_start();
 
 ?>
+<?php
+// Connexion à la base de données MySQL
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "projetannuel";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Vérifiez si la connexion a réussi
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Récupérer les options de type de frais dans la base de données
+$sql = "SELECT * FROM type_de_frais";
+$result = mysqli_query($conn, $sql);
+
+// Stocker les options de type de frais dans un tableau
+$options = array();
+while($row = mysqli_fetch_assoc($result)) {
+    $options[$row['idType']] = $row['Type_de_frais'];
+}
+?>
 
 <!DOCTYPE html>
-<html>
-
+<html lang="fr">
 <head>
-    <script> src="facture.js"</script>
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico" src="logom.ico"/>
-    <link href="salarie.css" rel="stylesheet" id="bootstrap-css">
-    <script type="text/javascript" src="admin.js"></script> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap.min.css">
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <title> Insérer des frais </title>
+
+
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <link href="admin.css?<?php echo time(); ?>" rel="stylesheet">
 </head>
 
-<header>
-<nav class="navbar navbar-default navbar-static-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <a href="pagesalarie.php"><img src="logom.png" alt="Logo MW" style="height:50px;display:inline-block;margin-right:10px;"></a>                   
-
-                <<section id="content">
-    <div class="container autumn-text">
-    <?php
-                        if(isset($_SESSION['Nom'])){
-                            $Nom= $_SESSION['Nom'];
-                        }
-    ?>
-        <h1>Bonjour <?php echo $Nom; ?>,</h1>
-        <h2>Entrez vos frais ci-dessous :</h2>
-        <!-- ... Le reste du contenu de la page ... -->
-    </div>
-</section>
 
 
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frais salarié</title>
 
+    <header>
+  <nav>
+    <ul>
 
-
-
-
-
-
-                <button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
-                    MENU
-                </button>
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-           
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" target="_blank">
-                
-                <?php
-
-                       /* echo(`.$ID_utilisateur.`);
-
-                            $db = new PDO('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', 'root');
-                            $stmt = $db->prepare("SELECT ID_role FROM utilisateur WHERE ID_utilisateur = $ID_utilisateur");
-
-                            $stmt->bindParam(':ID_utilisateur', $ID_utilisateur);
-                            $stmt->execute();
-
-
-
-                        */
-                        ?> 
-
-                        </a>
-                    </li>
-                    <li><a href="pagelogin.php"><B>Se déconnecter</B></a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+    </ul>
+  </nav>
+  <?php
+    if (isset($_SESSION['nom_utilisateur'])) {
+        $nom_utilisateur = $_SESSION['nom_utilisateur'];
+    }
+  ?>
+    
 </header>
-<body>
-    <div class="container-fluid main-container">
-        <div class="col-md-2 sidebar">
-            <div class="row">
-                <!-- uncomment code for absolute positioning tweek see top comment in css -->
-                <div class="absolute-wrapper"> </div>
-                <!-- Menu -->
-                <div class="side-menu">
-                    <nav class="navbar navbar-default" role="navigation">
-                        <!-- Main Menu -->
-                        <div class="side-menu-container">
-                            <ul class="nav navbar-nav">
-                                <li><a href="pagesalarie.php"><span class="glyphicon glyphicon-usd"></span> Frais</a></li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </nav>
+ <body>
 
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-10 content">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Gestion des Frais
-                </div>
-                <body>
-<div class="container">
-    <div class="row">
-    <form action="pagesalarie.php" method="post">
 <?php
 // Connexion à la base de données MySQL
 $servername = "localhost";
@@ -166,11 +110,10 @@ if (isset($_POST['btn'])) {
 // Fermeture de la connexion à la base de données
 
 ?>
-
-
-<div class="container">
+<div class="container3">
+    <div class="row">
+    <form class="form3" action="pagesalarie.php" method="post">
 <h2>Formulaire de saisie de frais </h2>
-<form action="#">
   <p><i>Complétez le formulaire. Les champs marqué par </i><em>*</em> sont <em>obligatoires</em></p>
   <fieldset>
     <legend></legend>
@@ -179,9 +122,9 @@ if (isset($_POST['btn'])) {
       <input id="Date_de_frais" type="date" name="Date_de_frais" placeholder="**/**/****" autofocus="" required=""><br>
       
       
-    <label class="input-icon"for="Montant">Montant<em>*</em></label>
+    <label for="Montant">Montant<em>*</em></label>
     
-    <input id="Montant" type="decimal" name="Montant" placeholder="00,00"> <i>€</i><br>
+    <input id="Montant" type="decimal" name="Montant" placeholder="00,00€">
    
   
      
@@ -193,11 +136,13 @@ if (isset($_POST['btn'])) {
 
  
   <fieldset>
+  <label for="objet"> Type <em>*</em></label>
   <select class="form-select" name="idType">
-  <option value="1">Restaurant (1)</option>
-  <option value="2">Hotel (2)</option>
-  <option value="3">Transport (3)</option>
-  <option value="4">Fournitures (4)</option>
+<?php
+foreach($options as $idType => $Type_de_frais) {
+    echo "<option value=\"$idType\">$Type_de_frais ($idType)</option>";
+}
+?>
 </select>
   </fieldset>
 
@@ -213,6 +158,7 @@ if (isset($_POST['btn'])) {
       <div id="preview"></div>
     </label>
   </div>
+</form>
 </form>
 
 <!-- script -->
@@ -283,17 +229,17 @@ if (isset($_POST['btn'])) {
   });
 </script>
 <p><input type="submit" value="Soummettre" name="btn"></p>
-            </form>
+</div>    
 
 
 
 <section id="content">
 
-        <div class="container autumn-text  ">
+        <div class="container3 autumn-text  ">
             <h1>FRAIS EN ATTENTE</h1>
-        <table id="table1" class="autumn-text1" style="width: 100%">
+        <table id="table1" class="tableuser autumn-text1 table-margin" style="width: 100%">
             <thead>
-                <tr>
+                <tr class="tableuser">
                     <th scope="col">Type</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Date</th>
@@ -342,31 +288,29 @@ if (isset($_POST['btn'])) {
                 ?>
             </tbody>
         </table> 
-    </div>
-            </section>
-    <section id="content">
-        <div class="container autumn-text">
+
+  
             <h1>FRAIS DEJA TRAITES</h1>
-         <table id="table2" class="table hover autumn-text1" style="width: 100%">
+         <table id="table2" class="tableuser hover autumn-text1" style="width: 100%">
              <thead>
-                 <tr>
+                 <tr class="tableuser">
                  <th scope="col">Créateur</th>
                      <th scope="col">Type</th>
                      <th scope="col">Prix</th>
                      <th scope="col">Date</th>
                      <th scope="col">Objet</th> 
                      <th scope="col">Etat</th>
-                     <th></th>
+                    
 
  <!-- @@ -237,40 +236,43 @@ -->
              </thead>
              <tbody>
 
              <?php
-
+$ID_utilisateur = $_SESSION['ID_utilisateur'];
 $base = new PDO ('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
 
-$donnees = $base->query("SELECT utilisateur.Nom ,frais.ID_frais, type_de_frais.idType , frais.Date_de_frais , frais.Montant , frais.objet , etat_du_frais.IdEtat FROM frais JOIN utilisateur ON frais.ID_utilisateur=utilisateur.ID_utilisateur JOIN Type_de_frais ON frais.IDType=Type_de_frais.IDType JOIN etat_du_frais ON frais.IdEtat=etat_du_frais.IdEtat ORDER BY frais.Date_de_frais DESC")->fetchAll();
+$donnees = $base->query("SELECT utilisateur.Nom ,frais.ID_frais, type_de_frais.idType , frais.Date_de_frais , frais.Montant , frais.objet , etat_du_frais.IdEtat FROM frais JOIN utilisateur ON frais.ID_utilisateur=utilisateur.ID_utilisateur JOIN Type_de_frais ON frais.IDType=Type_de_frais.IDType JOIN etat_du_frais ON frais.IdEtat=etat_du_frais.IdEtat WHERE utilisateur.ID_utilisateur = $ID_utilisateur AND etat_du_frais.IdEtat != 3 ORDER BY frais.Date_de_frais DESC")->fetchAll();
 
 foreach ($donnees as $row) {
     if ($row['IdEtat'] != 3) {
@@ -377,8 +321,10 @@ foreach ($donnees as $row) {
     <td><h5><?=$row['Montant']?></h5></td>
     <td><h5><?=$row['Date_de_frais']?></h5></td>
     <td><h5><?=$row['objet']?></h5></td>
-    <?php
+    <?php 
+ 
     if ($row['IdEtat']!= 3) {
+       
         if ($row['IdEtat']== 1)  { ?>
             <td colspan="2"><a href="refus.php?id=<?=$row['ID_frais']?>" class="glyphicon glyphicon-thumbs-up"><img width=30px height=auto></a></td>
         <?php } else if($row['IdEtat']== 2) { ?>
@@ -387,7 +333,7 @@ foreach ($donnees as $row) {
     } else { ?>
         <td></td>
     <?php } ?>
-    <td><a class="glyphicon glyphicon-pencil"><img width=30px height=auto></a></td>
+   
 </tr>
         <?php
     }
@@ -395,13 +341,18 @@ foreach ($donnees as $row) {
 ?>
             </tbody>
         </table> 
-    </div>
-            </section>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+   
+        
+
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+
+
   <script src="https://code.jquery.com/jquery-3.6.3.min.js"integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
   <script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready( function () {
@@ -421,12 +372,8 @@ $(document).ready( function () {
     } );
 } );
 </script>
-
-<div class="panel-body">
-                        </form>
-                        <section id="content">
-                        <div class="container autumn-text  ">
-                            <h3>Types de frais existants</h3>
+<div class="container7 autumn-text">
+ <h3>Types de frais existants</h3>
                         <table id="table1" class="autumn-text1 tableuser" style="width: 100%">
                             <thead>
                                 <tr class="tableuser">
@@ -459,9 +406,7 @@ $(document).ready( function () {
 
                     </section>
                 
-                                </div>
-                                </div>
-                        </div>
+                               
                     </div>
 
 </body>

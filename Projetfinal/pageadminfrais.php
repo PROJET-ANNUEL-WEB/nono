@@ -323,11 +323,7 @@ $(document).ready(function() {
                     </table>
                 </section>
                 
-            </div>
-            </div>  
-            </div>
-            </div>
-            </div>
+           
            </div>
 
 

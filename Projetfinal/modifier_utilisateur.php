@@ -76,7 +76,7 @@ if (isset($_POST['modif'])) {
             <form method="post" action="modifier_utilisateur.php">
             <div class="mb-3">
                 <label for="email" class="form-label zoe">Email</label>
-                <input type="email" name="email" class="form-control zoe2" id="email" aria-describedby="emailHelp" value="<?php echo $utilisateur['email']; ?>">
+                <input type="email" readonly name="email" class="form-control zoe2" id="email" aria-describedby="emailHelp" value="<?php echo $utilisateur['email']; ?>">
             </div>
 
             <div class="mb-3">

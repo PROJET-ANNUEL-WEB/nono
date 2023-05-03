@@ -96,7 +96,7 @@ if (isset($_POST['email']) && isset($_POST['mot_de_passe'])) {
         $_SESSION['ID_utilisateur'] = $ID_utilisateur;
         $_SESSION['Nom'] = $Nom;
         if ($ID_Role == 1) {
-            header("Location: pageadmin.php");
+            header("Location: pageadmincopie.php");
         } elseif ($ID_Role == 2) {
             header("Location: pagecompta.php");
         } elseif ($ID_Role == 3) {
