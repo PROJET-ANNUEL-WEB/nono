@@ -142,6 +142,46 @@ if ($role == 'admin') {
     </tbody>
 </table>
 
+h3>Utilisateurs enregistré récemments</h3>
+            <table id="table1" class="autumn-text1 tableuser" style="width: 100%">
+    <thead>
+        <tr class="tableuser">
+            <th scope="col">Email</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Rôle</th>            
+            <th scope="col">Etat du compte</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+      $base = new PDO('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
+      $donnees = $base->query("SELECT utilisateur.email, Nom, Prenom, ID_Role, etat_user FROM utilisateur, etat_utilisateur WHERE utilisateur.ID_Etat = 2 AND utilisateur.ID_Etat = etat_utilisateur.ID_Etat")->fetchAll();
+      
+      foreach ($donnees as $row) {
+          ?>
+          <tr>
+              <td><h5><?=$row['email'];?></h5></td>
+              <td><h5><?=$row['Nom']?></h5></td>
+              <td><h5><?=$row['Prenom']?></h5></td>
+              <td><h5><?=$row['ID_Role']?></h5></td>
+              <td><h5><?=$row['etat_user']?></h5></td>
+              <td>
+                  <form method="post" action="active_utilisateur.php">
+                      <input type="hidden" name="email" value="<?=$row['email']?>">
+                      <button type="submit" class="btn btn-success"><i class="fas fa-times"></i></button>
+                  </form>
+              </td>
+          </tr>
+          <?php
+      }
+      ?>
+      
+        ?>
+    </tbody>
+</table>
+
 <script>
     $(document).ready(function() {
         $('#table1').DataTable( {

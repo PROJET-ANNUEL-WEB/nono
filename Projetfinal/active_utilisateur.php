@@ -10,7 +10,7 @@ if (isset($_POST['email'])) {
     $utilisateur = $base->query("SELECT * FROM utilisateur WHERE email = '$email'")->fetch();
     if ($utilisateur) {
         // Mise à jour de l'état de l'utilisateur à "désactivé"
-        $base->query("UPDATE utilisateur SET ID_Etat = 2 WHERE email = '$email'");
+        $base->query("UPDATE utilisateur SET ID_Etat = 1 WHERE email = '$email'");
 
         // Redirection vers la page des utilisateurs enregistrés
         header('Location: pageadmincopie.php');

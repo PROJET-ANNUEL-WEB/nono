@@ -530,3 +530,29 @@ select.input-sm {
 			width: 20px;
       cursor:pointer;
 		}
+img {
+      vertical-align: middle;
+  }
+   img {
+      border: 0;
+  }
+  * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+  feuille de style user-agent
+  img {
+      overflow-clip-margin: content-box;
+      overflow: clip;
+  }
+  .button13{
+    background-color: #FF934F;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}

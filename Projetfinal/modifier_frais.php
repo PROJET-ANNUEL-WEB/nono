@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
 
      <input type="hidden" name="ID_Frais" value="<?php echo $result['ID_Frais']; ?>">
 
-    <button type="submit" name="submit">Enregistrer</button>
+    <button class="button13" type="submit" name="submit">Modifier</button>
 </form>
 </body>
 </html>

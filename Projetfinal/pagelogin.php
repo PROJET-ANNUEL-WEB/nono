@@ -80,7 +80,8 @@ if (isset($_POST['email']) && isset($_POST['mot_de_passe'])) {
 
     $db = new PDO('mysql:host=localhost;dbname=projetannuel;charset=utf8mb4', 'root', '');
 
-    $stmt = $db->prepare("SELECT * FROM utilisateur WHERE email = :email AND mot_de_passe = :mot_de_passe");
+    $stmt = $db->prepare("SELECT ID_utilisateur, Nom,  ID_Role, ID_Etat FROM utilisateur WHERE email = :email AND mot_de_passe = :mot_de_passe");
+
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':mot_de_passe', $mot_de_passe);
 
@@ -90,23 +91,28 @@ if (isset($_POST['email']) && isset($_POST['mot_de_passe'])) {
 
 
     if ($row) {
-        $ID_utilisateur = $row['ID_utilisateur'];
-        $ID_Role = $row['ID_Role'];
-        $Nom = $row['Nom'];
-        $_SESSION['ID_utilisateur'] = $ID_utilisateur;
-        $_SESSION['Nom'] = $Nom;
-        if ($ID_Role == 1) {
-            header("Location: pageadmincopie.php");
-        } elseif ($ID_Role == 2) {
-            header("Location: pagecompta.php");
-        } elseif ($ID_Role == 3) {
-            header("Location: pagesalarie.php");
+        if ($row['ID_Etat'] == 2) {
+            echo '<div class="alert alert-danger" role="alert"> Erreur: votre compte est désactivé. Veuillez contacter l\'administrateur. </div>';
+        } else {
+            $ID_utilisateur = $row['ID_utilisateur'];
+            $ID_Role = $row['ID_Role'];
+            $Nom = $row['Nom'];
+            $_SESSION['ID_utilisateur'] = $ID_utilisateur;
+            $_SESSION['Nom'] = $Nom;
+            if ($ID_Role == 1) {
+                header("Location: pageadmincopie.php");
+            } elseif ($ID_Role == 2) {
+                header("Location: pagecompta.php");
+            } elseif ($ID_Role == 3) {
+                header("Location: pagesalarie.php");
+            }
         }
     } else {
         // Pour afficher un message d'alerte si la connexion est impossible
         echo '<div class="alert alert-danger" role="alert"> Connexion impossible, êtes vous inscrit ? <a href="mailto:?to=admin@entreprise.com &subject=Identifiant%20non%20enregistré &body=Bonjour,%20mes%20identifiants%20n ont%20pas%20été%20saisi."> Si vous n avez pas d identifiant </a>. Cliquez pour vous inscrire. </div>';
     }
 }
+    
 
 
 
