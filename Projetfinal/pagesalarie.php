@@ -98,7 +98,7 @@ if (isset($_POST['btn'])) {
             VALUES  ('$Montant','$Date_de_frais', '$category', '$ID_utilisateur','$objet')";
           
           if (mysqli_query($conn, $sql)) {
-            echo "Les données ont été insérées avec succès.";
+            echo "<script> alert('Frais bien ajoute') </script>";
         } else {
             echo "Erreur: " . $sql . "<br>" . mysqli_error($conn);
         }
@@ -294,7 +294,7 @@ foreach($options as $idType => $Type_de_frais) {
          <table id="table2" class="tableuser hover autumn-text1" style="width: 100%">
              <thead>
                  <tr class="tableuser">
-                 <th scope="col">Créateur</th>
+                    <th></th>
                      <th scope="col">Type</th>
                      <th scope="col">Prix</th>
                      <th scope="col">Date</th>
@@ -316,7 +316,7 @@ foreach ($donnees as $row) {
     if ($row['IdEtat'] != 3) {
         ?>
     <tr>
-    <td><h5><?=$row['Nom'];?></h5></td>
+    <td></td>
     <td><h5><?=$row['idType']?></h5></td>
     <td><h5><?=$row['Montant']?></h5></td>
     <td><h5><?=$row['Date_de_frais']?></h5></td>
@@ -372,6 +372,7 @@ $(document).ready( function () {
     } );
 } );
 </script>
+
 <div class="container7 autumn-text">
  <h3>Types de frais existants</h3>
                         <table id="table1" class="autumn-text1 tableuser" style="width: 100%">
