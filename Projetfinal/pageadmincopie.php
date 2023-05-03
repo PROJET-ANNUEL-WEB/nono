@@ -142,7 +142,7 @@ if ($role == 'admin') {
     </tbody>
 </table>
 
-h3>Utilisateurs enregistré récemments</h3>
+<h3>Utilisateurs enregistré récemments</h3>
             <table id="table1" class="autumn-text1 tableuser" style="width: 100%">
     <thead>
         <tr class="tableuser">
@@ -168,7 +168,7 @@ h3>Utilisateurs enregistré récemments</h3>
               <td><h5><?=$row['ID_Role']?></h5></td>
               <td><h5><?=$row['etat_user']?></h5></td>
               <td>
-                  <form method="post" action="active_utilisateur.php">
+                  <form method="post" action="_utilisateur.php">
                       <input type="hidden" name="email" value="<?=$row['email']?>">
                       <button type="submit" class="btn btn-success"><i class="fas fa-times"></i></button>
                   </form>
@@ -178,7 +178,7 @@ h3>Utilisateurs enregistré récemments</h3>
       }
       ?>
       
-        ?>
+        
     </tbody>
 </table>
 
