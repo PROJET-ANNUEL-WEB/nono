@@ -196,7 +196,7 @@ if ($role == 'admin') {
               <td><h5><?=$row['ID_Role']?></h5></td>
               <td><h5><?=$row['etat_user']?></h5></td>
               <td>
-                  <form method="post" action="_utilisateur.php">
+                  <form method="post" action="active_utilisateur.php">
                       <input type="hidden" name="email" value="<?=$row['email']?>">
                       <button type="submit" class="btn btn-success"><i class="fas fa-times"></i></button>
                   </form>
