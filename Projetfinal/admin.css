@@ -19,7 +19,16 @@ nav {
   right: 0;
   z-index: 1000030;
 }
-
+.rulio{
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  background-color:transparent;
+  font-style: italic;
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  color: #f7e9a7;
+}
 ul {
   list-style-type: none;
   margin: 0;

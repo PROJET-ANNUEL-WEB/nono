@@ -49,18 +49,20 @@ while($row = mysqli_fetch_assoc($result)) {
 <header>
   <nav>
     <ul>
-    <li><a class="sabrille" href="pageadmincopie.php">Utilisateurs</a></li>
+      <li><a class="sabrille" href="pageadmincopie.php">Utilisateurs</a></li>
       <li><a class="sabrille" href="pageadminrole.php">Rôles</a></li>
       <li><a class="sabrille" href="pageadminfrais.php">Frais</a></li>
     </ul>
-  </nav>
+   
+  </nav> 
   <?php
-    if (isset($_SESSION['nom_utilisateur'])) {
-        $nom_utilisateur = $_SESSION['nom_utilisateur'];
-    }
-  ?>
-    
+      if (isset($_SESSION['nom_utilisateur'])) {
+          $nom_utilisateur = $_SESSION['nom_utilisateur'];
+          echo "<p class='rulio'>Bonjour Mr $nom_utilisateur</p>";
+      }
+    ?>
 </header>
+
 
 <body>
 	<div class="container">

@@ -58,10 +58,11 @@ while($row = mysqli_fetch_assoc($result)) {
     </ul>
   </nav>
   <?php
-    if (isset($_SESSION['nom_utilisateur'])) {
-        $nom_utilisateur = $_SESSION['nom_utilisateur'];
-    }
-  ?>
+      if (isset($_SESSION['nom_utilisateur'])) {
+          $nom_utilisateur = $_SESSION['nom_utilisateur'];
+          echo "<p class='rulio'>Bonjour Mr $nom_utilisateur</p>";
+      }
+    ?>
     
 </header>
  <body>
