@@ -188,6 +188,7 @@ if ($role == 'admin') {
       $donnees = $base->query("SELECT utilisateur.email, Nom, Prenom, ID_Role, etat_user FROM utilisateur, etat_utilisateur WHERE utilisateur.ID_Etat = 2 AND utilisateur.ID_Etat = etat_utilisateur.ID_Etat")->fetchAll();
       
       foreach ($donnees as $row) {
+        
           ?>
           <tr>
               <td><h5><?=$row['email'];?></h5></td>
