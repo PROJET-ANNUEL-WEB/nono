@@ -2,6 +2,30 @@
 session_start();
 
 ?>
+<?php
+// Connexion à la base de données MySQL
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "projetannuel";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Vérifiez si la connexion a réussi
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Récupérer les options de type de frais dans la base de données
+$sql = "SELECT * FROM roles";
+$result = mysqli_query($conn, $sql);
+
+// Stocker les options de type de frais dans un tableau
+$options = array();
+while($row = mysqli_fetch_assoc($result)) {
+    $options[$row['ID_Role']] = $row['Type_de_role'];
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -43,11 +67,13 @@ session_start();
 		<form class="form2" action="pageadmincopie.php" method="post">
 			<h2>Enregistrement d'utilisateur</h2>	
       <label>Rôle</label>
-      	<select name="ID_Role">
-				<option value="admin">Admin</option>
-				<option value="comptable">Comptable</option>
-				<option value="salarie">Salarié</option>
-			</select>
+      <select class="form-select" name="idType">
+<?php
+foreach($options as $ID_Role => $Type_de_role) {
+    echo "<option value=\"$ID_Role\">$Type_de_role ($ID_Role)</option>";
+}
+?>
+</select>
 			<label>Adresse e-mail</label>
 			<input type="email" name="email">
 			<label>Mot de passe</label>
