@@ -69,7 +69,7 @@ while($row = mysqli_fetch_assoc($result)) {
 		<form class="form2" action="pageadmincopie.php" method="post">
 			<h2>Enregistrement d'utilisateur</h2>	
       <label>Rôle</label>
-      <select class="form-select" name="idType">
+      <select class="form-select" name="ID_Role">
 <?php
 foreach($options as $ID_Role => $Type_de_role) {
     echo "<option value=\"$ID_Role\">$Type_de_role ($ID_Role)</option>";
@@ -96,13 +96,14 @@ foreach($options as $ID_Role => $Type_de_role) {
 
         $db = new PDO('mysql:host=localhost;dbname=projetannuel;charset=utf8', 'root', '');
 
-        $stmt = $db->prepare("INSERT INTO utilisateur (email, mot_de_passe, Nom, Prenom,ID_Role) VALUES (:email, :mot_de_passe, :Nom, :Prenom, :ID_Role)");
+        $stmt = $db->prepare("INSERT INTO utilisateur (email, mot_de_passe, Nom, Prenom, ID_Role) VALUES (:email, :mot_de_passe, :Nom, :Prenom, :ID_Role)");
         $stmt->bindParam(':mot_de_passe', $mot_de_passe);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':Prenom', $Prenom);
         $stmt->bindParam(':Nom', $Nom);
         $stmt->bindParam(':ID_Role', $ID_Role);
-        $role = $_POST['ID_Role'];
+        $role = $options[$_POST['ID_Role']];
+
 if ($role == 'admin') {
   $ID_Role = 1;
 } elseif ($role == 'comptable') {
